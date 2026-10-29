@@ -2,132 +2,170 @@
 
 ## 📌 Project Overview
 
-Fire accidents can cause serious damage to human life, property, and the environment. Traditional fire detection systems may not detect fire or smoke effectively in every surveillance area.
+Fire accidents can cause serious damage to people, buildings, forests, and other properties. Traditional fire alarm systems may not detect every fire or smoke incident immediately in large surveillance areas.
 
-This project uses a **pretrained YOLO object detection model** to detect fire and smoke from uploaded images and surveillance videos. The system displays detected objects with bounding boxes and provides a simple web interface for users to upload files and view the results.
+This project uses **Deep Learning and Computer Vision** to detect fire and smoke from images and surveillance video. A pretrained YOLO object detection model identifies fire and smoke and displays bounding boxes around detected objects.
+
+The project uses Python, OpenCV, YOLO, and Gradio to create a simple web interface for testing uploaded images and videos.
 
 ## 🎯 Objectives
 
-- Detect fire and smoke from images and videos.
-- Use a pretrained YOLO model for object detection.
-- Display bounding boxes around detected objects.
-- Show detection results through a web interface.
-- Allow users to view and download processed videos.
-- Support early identification of potential fire hazards.
+- Detect fire and smoke from images and video.
+- Identify the location of detected objects using bounding boxes.
+- Display prediction labels and confidence scores.
+- Provide a simple web interface for users.
+- Explore the use of AI for early fire detection and surveillance monitoring.
 
 ## 🛠️ Technologies Used
 
-- **Programming Language:** Python
-- **Deep Learning:** YOLO Object Detection
-- **Computer Vision:** OpenCV
-- **Model Platform:** Hugging Face
-- **Web Framework:** Streamlit
-- **Development Environment:** Google Colab
-- **Libraries:** Ultralytics, Hugging Face Hub
+| Technology | Purpose |
+|---|---|
+| Python | Main programming language |
+| YOLO | Fire and smoke object detection |
+| Hugging Face | Pretrained model hosting |
+| OpenCV | Video and image processing |
+| Gradio | Web interface |
+| Google Colab | Model testing and development |
+| GitHub | Version control and project documentation |
 
 ## ⚙️ System Workflow
 
-1. User uploads an image or video.
-2. The pretrained YOLO model is loaded.
-3. The uploaded file is processed by the model.
-4. Fire and smoke objects are detected.
-5. Bounding boxes are drawn around detected objects.
-6. The detection results are displayed on the website.
-7. Processed videos can be viewed and downloaded.
-
-## 🧠 Model Used
-
-This project uses a pretrained YOLO model downloaded from Hugging Face:
-
-**Model Repository:** [nobita111222/fire-smoke-yolov8n](https://huggingface.co/nobita111222/fire-smoke-yolov8n)
-
-The model is loaded using the Ultralytics YOLO library. A confidence threshold of 0.25 is used by default to filter detections.
-
-## 🌐 Web Application Features
-
-- Simple and user-friendly interface.
-- Image upload and fire/smoke detection.
-- Video upload and frame-by-frame detection.
-- Bounding box visualization.
-- Detection status and detected class names.
-- Processed video preview and download option.
-- Adjustable detection confidence threshold.
-
-## 💻 Installation and Execution
-
-### Prerequisites
-
-- Python 3.10 or 3.11 recommended.
-- Internet connection for downloading the pretrained model and required packages.
-- A computer capable of running the model.
-
-### Step 1: Clone the Repository
-
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-```
-
-Replace `YOUR_GITHUB_REPOSITORY_URL` with your actual GitHub repository URL.
-
-### Step 2: Open the Project Folder
-
-```bash
-cd YOUR_PROJECT_FOLDER
-```
-
-### Step 3: Install Dependencies
-
-```bash
-python -m pip install streamlit ultralytics huggingface_hub opencv-python-headless
-```
-
-### Step 4: Run the Web Application
-
-```bash
-python -m streamlit run app.py
-```
-
-### Step 5: Open the Website
-
-Open the local URL shown in the terminal, usually:
+1. **Input:** Upload an image or surveillance video.
+2. **Preprocessing:** Read the image or extract frames from the video.
+3. **Detection:** Pass the image or frames to the pretrained YOLO model.
+4. **Prediction:** Detect fire, smoke, or no detected objects.
+5. **Visualization:** Draw bounding boxes and show confidence scores.
+6. **Output:** Display the annotated image or processed video.
 
 ```text
-http://localhost:8501
+Image / Surveillance Video
+            |
+            v
+   Image and Frame Processing
+            |
+            v
+    Pretrained YOLO Model
+            |
+            v
+    Fire and Smoke Detection
+            |
+            v
+ Bounding Boxes + Confidence
+            |
+            v
+       Gradio Interface
 ```
 
-Upload an image or video and click **Start Detection** to view the results.
+## ✨ Key Features
+
+- Fire detection
+- Smoke detection
+- Image-based prediction
+- Video frame analysis
+- Bounding-box visualization
+- Confidence score display
+- Browser-based interface
+- Pretrained model inference without training from scratch
 
 ## 📂 Project Structure
 
 ```text
-Fire-Smoke-Detection/
+fire-smoke-detection/
 │
-├── app.py
-├── requirements.txt
-└── README.md
+├── app.py                 # Gradio application
+├── requirements.txt       # Python dependencies
+├── README.md              # Project documentation
+├── sample_images/         # Sample test images
+├── sample_videos/         # Sample test videos
+└── outputs/               # Processed results
 ```
 
-The pretrained model weights are downloaded from Hugging Face when the application starts, so the model file does not need to be stored in the repository.
+*This is the suggested structure. Keep only the files and folders that exist in your repository.*
+
+## 🚀 Installation and Setup
+
+### 1. Clone the repository
+
+```bash
+git clone YOUR_GITHUB_REPOSITORY_URL
+cd fire-smoke-detection
+```
+
+Replace `YOUR_GITHUB_REPOSITORY_URL` with your actual GitHub repository URL.
+
+### 2. Install the dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Run the application
+
+```bash
+python app.py
+```
+
+Open the local Gradio URL shown in the terminal to use the interface.
+
+**Google Colab option:** Install the required packages in a Colab cell, load the pretrained model, and launch Gradio with sharing enabled to test the application through a temporary public URL.
+
+## 📦 Requirements
+
+Example `requirements.txt`:
+
+```text
+ultralytics
+huggingface_hub
+gradio
+opencv-python-headless
+pillow
+numpy
+```
+
+## 🧪 Testing
+
+Test the system with different types of input:
+
+- Images containing visible fire.
+- Images containing smoke.
+- Normal scenes without fire or smoke.
+- Videos containing fire or smoke.
+- Surveillance-style footage with different lighting conditions.
+
+Record the model's predictions and check for false detections and missed detections. Evaluate performance on a representative test dataset before making claims about accuracy.
+
+## 📊 Expected Output
+
+The application is designed to display:
+
+- **Fire detected** when the model identifies fire.
+- **Smoke detected** when the model identifies smoke.
+- **No objects detected** when no target objects are detected above the configured confidence threshold.
+- Bounding boxes and confidence scores for detected objects.
+
+Actual results depend on the input media, model quality, and confidence threshold. “No objects detected” does not guarantee that a scene is safe.
+
+## 📚 Dataset and Model Resources
+
+- [D-Fire Dataset](https://github.com/gaia-solutions-on-demand/DFireDataset)
+- [CCTV Smoke and Fire Dataset](https://huggingface.co/datasets/Simuletic/CCTV-Smoke-Fire-Emergency-Detection-Dataset)
+- [Ultralytics YOLO Documentation](https://docs.ultralytics.com/)
+- [Hugging Face Documentation](https://huggingface.co/docs)
+
+Check each dataset's license and usage restrictions before redistributing images or using them commercially.
 
 ## 🔮 Future Enhancements
 
-- Real-time detection from CCTV camera streams.
-- Instant alerts when fire or smoke is detected.
-- Email or mobile notifications.
-- Improved detection accuracy in different lighting conditions.
-- Detection location tracking and event logging.
-- Deployment as a publicly accessible web application.
+- Real-time camera stream processing.
+- Email or notification alerts for detected fire and smoke.
+- Improved detection under low-light and challenging conditions.
+- Performance evaluation using precision, recall, and mean Average Precision (mAP).
+- Deployment as a hosted web application.
+- Integration with authorized surveillance systems.
 
 ## ⚠️ Limitations
 
-- Detection accuracy depends on the pretrained model and input video quality.
-- Processing speed depends on the available hardware.
-- A local Streamlit application is accessible only on the computer running it unless additional networking or hosting is configured.
-- The system is intended as a project demonstration and should not replace certified fire safety systems.
-
-## 👩‍💻 Project Outcome
-
-This project demonstrates how deep learning and computer vision can be combined with a web application to identify potential fire and smoke hazards in images and videos.
+This project is an educational prototype. Its predictions may contain false positives or false negatives. It must not be used as a replacement for certified fire alarms, emergency response procedures, or professional fire safety systems.
 
 ## 📜 Disclaimer
 
